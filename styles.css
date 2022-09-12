@@ -1,12 +1,11 @@
 * {box-sizing: border-box;
 margin: 0;
 padding: 0;
-outline: 1px black;
 }
 
 
 body {overflow: overlay;
-height: 100vh;
+height: auto;
 width: 100vw;
 }
 
@@ -46,7 +45,7 @@ width: 100vw;
     top:0;
     left:0;
     opacity: 1;
-    z-index: 15;
+    z-index: 30;
 }
 
 .logo {font-family: pixelFont;
@@ -191,7 +190,7 @@ position: fixed;
 top: 10vh;
 left: 20vw;
 transform: translate3d(90vw, 0, 0);
-z-index: 23;
+z-index: 80;
 transition: 0.4s ease-in-out;
 display: flex;
 justify-content: center;
@@ -312,9 +311,10 @@ width: inherit;
     width: 100vw;
     background-color: gray;
     position: absolute;
-    z-index: 22;
+    z-index: 79;
     opacity: 0.6;
     display: none;
+    pointer-events: none
 }
 
 .hide {

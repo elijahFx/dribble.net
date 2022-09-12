@@ -138,15 +138,22 @@ function checkCreators(){
     
 }
 
-
+let articleCounter = 0;
+let allTheArticles = [];
 
 function writeNewArticle(){
-    
+articleCreator.style.display = "flex"
+articleCounter++;
+
+
+ 
+
+
     let topic = topicCreator.value;
     let date = dateCreator.value;
     JSON.stringify(date)
     let dateConvertable = date.replace(/-/gi,".")
-    
+
     
     let author = authorCreator.value;
     let text = textCreator.value;
@@ -158,13 +165,19 @@ function writeNewArticle(){
     authorCreated.classList.add("author");
     authorCreated.innerText = author;
 
-
+  
     let textCreated = document.createElement("p");
     textCreated.classList.add("text");
     textCreated.innerText = text;
         
-    
+    let  articleObj = {
+        topic: topic,
+        date: dateConvertable,
+        mainText: text,
+        author: author
+    }
 
+    allTheArticles.push(articleObj);
 
     let topicCreated = document.createElement("h4");
     topicCreated.classList.add("topic");
@@ -175,8 +188,10 @@ function writeNewArticle(){
     article.append(dateCreated)
     article.append(authorCreated)
     article.append(textCreated)
-    localStorage.setItem("article", article)
-    console.log(article)
+
+ localStorage.setItem("allArticles", JSON.stringify(allTheArticles))
+
+    
     mainBody.prepend(article)
     grayMatter.style.display = `none`;
     articleCreator.style.transform = `translate3d(90vw, 0, 0)`;
@@ -336,3 +351,32 @@ nextBtn.addEventListener("click", nextSong)
 audio.addEventListener("timeupdate", updateProgress)
 progressContainer.addEventListener("click", setProgress)
 audio.addEventListener("ended", nextSong)
+
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    let allArticles = localStorage.getItem("allArticles")
+    let allArticlesNew = JSON.parse(allArticles);
+    let articlesArray = Array.from(allArticlesNew);
+    articlesArray.forEach(article => {
+        let articleContainer = document.createElement("article");
+        let topic = document.createElement("h4")
+        let date = document.createElement("p")
+        let author = document.createElement("p")
+        let text = document.createElement("div")
+        topic.innerText = article.topic;
+        date.innerText = article.date;
+        author.innerText = article.author;
+        text.innerText = article.mainText;
+        text.classList.add("text");
+        topic.classList.add("topic");
+        author.classList.add("author");
+        date.classList.add("date");
+        articleContainer.appendChild(topic);
+        articleContainer.appendChild(date);
+        articleContainer.appendChild(author);
+        articleContainer.appendChild(text);
+        mainBody.prepend(articleContainer)
+    }) 
+})
+
