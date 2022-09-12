@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gk - мой блог</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <script type="module" src="player.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+</head>
+<body>
+    <div class="graymatter"></div>
+    <div class="articleCreator">
+        <div class="crestBtn">&#215</div>
+        <form class="creator">
+        <label for="dateCreator">Дата написания:</label>
+        <input type="date" id="dateCreator">
+        <label for="topicCreator">Введите заголовок вашей статьи:</label>
+        <textarea type="text" id="topicCreator"></textarea>
+        <label for="authorCreator">Кто является автором статьи?</label>
+        <textarea type="text" id="authorCreator"></textarea>
+        <label for="textCreator">Введите содержание вашей статьи:</label>
+        <textarea type="text" id="textCreator"></textarea>
+        <div id="submitBtn">Опубликовать новую статью</div>
+    </form>
+    </div>
+    
+    <div class="header">
+        <div class="logo"></div>
+    </div>
+    <nav class="navigation-container">
+        <input type="text" placeholder="Введите статью..." id="searchbar">
+        
+            <a href="D:/Codevs/wordleClone/index.html" target="_blank">Wordle Клон</a>
+            <a href="file:///D:/Codevs/typingGame/index.html" target="_blank">Тренировка печати</a>
+            <a href="file:///D:/Codevs/index.html" target="_blank">Самый расистский сайт</a>
+            <a href="file:///D:/Codevs/page4Books.html" target="_blank">Книги</a>
+            <a href="file:///D:/Codevs/toDo/todo.html" target="_blank">Список дел</a>
+            <a href="file:///D:/Codevs/quiz/quiz.html" target="_blank">Квиз</a>
+            <a href="file:///D:/Codevs/blog/blog.html" target="_blank">Самый первый блог</a>
+            <a href="file:///D:/Codevs/subindex1.html" target="_blank">Юриспруденция</a>
+           
+        
+    </nav>
+    
+<div class="row">
+    
+        
+<div class="side">
+    <h4 class="subTopic">Сборник статей</h4>
+    <ul class="listBox">
+    </ul>
+</div>
+
+
+
+<div class="main">
+    <article>
+        <h4 class="topic">Создание аудио плеера</h4>
+        <p class="date">09.09.2022</p>
+        <p class="author">Глеб Колесников</p>
+        
+         <div class="music-container">
+<div class="music-info">
+    <h4 id="title">Укулеле</h4>
+    <div class="progress-container">
+        <div class="progress"></div>
+    </div>
+
+</div>
+<audio src="topg.mp3" id="audio"></audio>
+<div class="img-container">
+    <img src="topg.jpg" alt="Top G" id="cover">
+</div>
+
+<div class="navigation">
+<button id="prev" class="action-btn">
+    <i class="fas fa-backward"></i>
+</button>
+<button id="play" class="action-btn action-btn-big">
+    <i class="fas fa-play"></i>
+</button>
+<button id="next" class="action-btn">
+    <i class="fas fa-forward"></i>
+</button>
+
+</div>
+         </div>
+            </article>
+    <article>
+<h4 class="topic">Мои потуги в перетягивании вещей в веб-сфере</h4>
+<p class="date">02.09.2022</p>
+<p class="author">Глеб Колесников</p>
+<p class="text">Знакомство с Drag and Drop API у меня началось около месяца назад. Данный API предназначен для перетягиваний элементов HTML, которые имеют при себе аттрибут (toggle="true"), по площади специально выделенных территорий, которые также более известны под кодовым "DropZones".
+    Самыми основными ивентами этого языка являются "drag", "dragend", "dragleave", "dragover", "dragstart" и наконец-таки "drop". 
+</p>
+<div class="text">HTML drag-and-drop использует модель событий DOM и события перетаскивания (en-US) унаследованные от событий мыши. Обычно операция перетаскивания начинается, когда пользователь выбирает перетаскиваемый элемент, перемещает его в зону элемента сброса, после чего отпускает.</div>
+<div class="text">К HTML Drag and Drop интерфейсам относятся DragEvent (en-US), DataTransfer, DataTransferItem (en-US) и DataTransferItemList (en-US).</div>
+<div class="text">Интерфейс DragEvent (en-US) имеет конструктор и одно свойство dataTransfer (en-US), которое является объектом DataTransfer.</div>
+<img class="img" src="screen1.jpg">
+<div class="text">Объекты DataTransfer включают состояние события, такое как тип выполненного перетаскивания (вроде copy или move), данные перетаскивания (один или более элементов) и MIME-тип каждого элемента перетаскивания. Объекты DataTransfer также имеют методы добавления или удаления элементов из данных о перетасивании.</div>
+<div class="text">Для добавления в приложение поддержки HTML Drag and Drop, следует использовать только интерфейсы DragEvent (en-US) и DataTransfer. (Firefox поддерживает некоторые Специфичные для Gecko расширения объекта DataTransfer, но они будут работать только в Firefox.)</div>
+    </article>
+    <article>
+        <h4 class="topic">Еда</h4>
+        <p class="date">02.09.2022</p>
+        <p class="author">Глеб Колесников</p>
+        <p class="text">Пи́ща (еда́) — то, что едят, чем питаются[1] — любое вещество[2], пригодное для еды и питья живым организмам для пополнения запасов энергии и необходимых ингредиентов для нормального течения химических реакций обмена веществ: белков, жиров, углеводов, витаминов, минералов и микроэлементов. Питательные вещества попадают в живой организм, где усваиваются клетками с целью выработки и накопления энергии, поддержания жизнедеятельности, а также обеспечения ростовых процессов и созревания. Основное назначение пищи — быть источником энергии, возобновляемых материалов и «строительного материала» для организма, однако, немаловажным в питании человека является и фактор получения удовольствия (удовлетворение голода) от еды. Обычно пища делится по происхождению на растительную и животную. 
+        </p>
+        <div class="text">В отношении питания одомашненных животных распространено и употребимо понятие корм.</div>
+        <div class="text">Область человеческой деятельности, связанная с приготовлением пищи, называется кулинария (кухонное ремесло).</div>
+        <div class="text">В истории сложилось так, что люди обеспечивали свои потребности в продовольствии несколькими основными путями: охотой, собирательством и сельскохозяйственным производством. На сегодняшний день большая часть потребности в пище во всём мире удовлетворяется с помощью пищевой промышленности.</div>
+        <img class="img" src="screen2.jpg">
+        <div class="text">Обычно пища содержит смесь различных компонентов, однако встречаются виды пищи, состоящие из какого-либо одного компонента или его явного преобладания, например, углеводистая пища. Пищевая ценность продуктов питания определяется в первую очередь энергетической и биологической ценностью, составляющих её компонентов, а также пропорциями отдельных видов компонентов в их общем количестве.</div>
+        <div class="text">Безопасная пища — это пища, которая свободна не только от токсинов, пестицидов и химических и физических загрязнителей, но также от микробиологических патогенов, таких как бактерии, паразиты и вирусы, которые могут вызывать болезни.</div>
+    </article>
+        <article>
+                <h4 class="topic">Самая опасная змея в мире</h4>
+                <p class="date">02.09.2022</p>
+                <p class="author">Глеб Колесников</p>
+                <p class="text">Тайпаны (лат. Oxyuranus) — род очень ядовитых змей семейства аспидов. Крупные австралийские змеи, чей укус считается самым опасным среди современных змей — до выработки антидота к нему (в 1955 году) от укуса тайпана умирали более чем в 90 % случаев. 
+                </p>
+
+                <div class="text">Обитает на побережье Северной и Северо-Восточной Австралии и на юго-востоке Новой Гвинеи, отчего и приобрёл своё название. Ведёт преимущественно дневной образ жизни. Питается лягушками и мелкими млекопитающими, включая мышей и крыс, поэтому нередок неподалеку от людского жилья и на полях сахарного тростника, где до изобретения уборочных комбайнов случались наиболее частые нападения змей на людей.</div>
+                <div class="text">Ядовитые зубы до 13 мм в длину.</div>
+                <div class="text">Ядовитые железы тайпана содержат до 400 мг яда, в среднем около 120 мг. Яд тайпана оказывает преимущественно нейротоксическое (блокирует мускульные сокращения, что вызывает паралич дыхательной мускулатуры) и коагулопатическое (нарушает свёртываемость крови) действие.</div>
+                <img class="img" src="screen3.jpg">
+                <div class="text">Окрас однотонный, светло- или тёмно-коричневый или красноватый; голова светлее, брюхо белое или желтоватое.</div>
+                <div class="text">Тайпан очень агрессивный и быстрый: когда его беспокоят, приподнимает голову, покачивая ею, потом молниеносно бьёт противника несколько раз подряд. Укус тайпана может привести к смерти за 4—12 часов, тогда как укушенный другими самыми ядовитыми змеями человек живёт около суток. В австралийском штате Квинсленд, где тайпаны встречаются чаще всего, умирает каждый второй укушенный.</div>
+         </article>
+         <article class="secret">
+            <h4 class="topic">Самый чертовски красивый мужчина нашей современности - Виктор Голубев</h4>
+            <p class="date">08.09.2022</p>
+            <p class="author">Глеб Колесников</p>
+            <div class="formBox">
+            <img class="img" src="screen4.jpg">
+            <p class="text">TOP G</p>
+        </div>
+            <p class="text"><b>Виктор Голубев</b> - один из немногих достаточно умных людей, способных разгадать загадку, которую я скорее всего ему преддожу и впоследствии найти данную секретну статью.</p>
+            <p class="text">По совместительству выступает профессиональным юристом и QA-инженером (тестером) многоообещающего статейного проекта - Dribble.net. Посему каждый будущий пользовтель данного сайта будет вынужден знать его фамилию, имя, отчество на зубок, а также выражать свою благодарность за стабильно работающий сайт.</p>
+            <p class="text">Кста, красавчик, что нашёл данную пасхалку. Как видишь мне удалось зафиксить articleCreator. Ща допишу эту статейку и пойду в душ, поскольку от меня невьебенно воняет, волосы грязные, а мне через пару часов в парикхмаХЕРскую.</p>
+        </article>
+<div class="white-space"><p>К сожалению, статьи с таким названием нет</p>
+<img id="lost" src="ff.png"></img></div>
+
+
+
+
+
+</div>
+
+<div class="side2">
+    <h4 class="subTopic">Что поделать?</h4>
+    <button id="createArticleBtn">Добавить статью</button>
+    
+    <div>Удалить</div>
+    <div class="clearBtn">Очистить</div>
+
+
+</div>
+</div>
+<div class="footer">
+    
+  </div>
+
+
+   
+    
+</body>
+</html>
