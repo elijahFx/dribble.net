@@ -7,24 +7,29 @@ padding: 0;
 body {overflow: overlay;
 height: auto;
 width: 100vw;
+position: relative;
 }
 
 ::-webkit-scrollbar {
     width: 1vw;
     background: transparent;
+    z-index: 1;
 }
   
 ::-webkit-scrollbar-thumb {
     background: rgba(90, 90, 90);
     border-radius: 10px;
+    z-index: 1;
 }
   
 ::-webkit-scrollbar-corner{
     border-radius: 10px;
+    z-index: 1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(68, 68, 68);  
+    background: rgb(68, 68, 68);
+    z-index: 1;  
 }
 
 @font-face {
@@ -45,13 +50,14 @@ width: 100vw;
     top:0;
     left:0;
     opacity: 1;
-    z-index: 30;
+    z-index: 5;
 }
 
 .logo {font-family: pixelFont;
 font-size: 10vh;
 cursor: pointer;
 color: white;
+user-select: none;
 }
 
 span {border-right: .05em solid;
@@ -147,17 +153,20 @@ overflow: hidden;
 .topic {font-family: 'Source Sans Pro', sans-serif;
 font-size: 5vh;
 margin-bottom: 10px;
+word-break: break-all;
 }
 
 .date, .author {font-size: 2vh;
-font-style: oblique}
+font-style: oblique;
+word-break: break-all;}
 
 .text {
     margin-top: 10px;
+    word-break: break-all;
 }
 
 article {border-bottom: 1px solid;
-    ;
+    position: relative;;
 
 padding: 20px;
 }
@@ -173,7 +182,7 @@ font-size: 4vh;
 #createArticleBtn {
     background-color: #1abc9c;
     outline: none;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 20px;
     padding: 10px;
     cursor: pointer;
@@ -183,14 +192,16 @@ font-size: 4vh;
 border: 1px solid black;
 }
 
-.articleCreator {background-color:rgb(172, 165, 165);
+.articleCreator {
+padding: 15px;
+background-color:rgb(172, 165, 165);
 height: 85vh;
 width: 60vw;
 position: fixed;
 top: 10vh;
 left: 20vw;
 transform: translate3d(90vw, 0, 0);
-z-index: 80;
+z-index: 10;
 transition: 0.4s ease-in-out;
 display: flex;
 justify-content: center;
@@ -198,6 +209,7 @@ align-items: center;
 border-radius: 40px;
 border: 1px solid black;
 box-shadow: 0 0 10px 2px;
+display: none;
 }
 
 .articleCreator .crestBtn {
@@ -287,9 +299,8 @@ padding: 20px 0 10px 0;
 }
 
 .listBox {
-    position: fixed;
-top: 44vh;
-left: 1vw;
+border-top: 2px solid;
+border-bottom: 2px solid;
 overflow: hidden;
 width: inherit;
 }
@@ -306,15 +317,15 @@ width: inherit;
     text-decoration: underline;
 }
 
-.graymatter {
-    height: 100vh;
+
+body .graymatter {
+    height: 100%;
     width: 100vw;
     background-color: gray;
     position: absolute;
-    z-index: 79;
+    z-index: 9;
     opacity: 0.6;
     display: none;
-    pointer-events: none
 }
 
 .hide {
@@ -370,7 +381,7 @@ width: inherit;
     padding: 20px 30px;
     position: relative;
     margin: 100px 0;
-    z-index: 12;
+    z-index: 4;
   }
   
   .img-container {
@@ -489,7 +500,87 @@ width: inherit;
 .clearBtn {
     cursor: pointer;
 }
+
+.field {
+    position: relative;
+    width: inherit;
+    height: 50vh;
+    background-color: green;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.ball {
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 40px;
+ width: 40px;
+ background-color: yellow;
+ border-radius: 50%;
+ cursor: pointer;
+ transition: 0.4s;
+}
+
+.highlight {
+    color: #117561;
+}
   
+
+.pen {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5%;
+    right: 0;
+    background-image: url('pen1.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: -5px -2px;
+    z-index: 4;
+    transition: 0.4s;
+    opacity: 1;
+}
+
+.pen:hover {
+    opacity: 0.7;
+}
+
+.areaEd {
+    margin-top: 10px;
+    word-break: break-all;
+    display: block;
+    outline: none;
+    border: 0.01px solid transparent;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    overflow: hidden;
+    height: fit-content;
+    width: 100%;
+    resize: none;
+    background-color: transparent;
+}
+
+.submitEl {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5%;
+    right: 7%;
+    background-image: url('submit.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: -1px 0;
+    z-index: 4;
+    transition: 0.4s;
+    opacity: 1;
+}
+
+.footer {
+    height: 20vh;
+    width: 100vw;
+    background-color: rgb(172, 165, 165);
+}
   
 
 @media screen and (max-width: 600px) {

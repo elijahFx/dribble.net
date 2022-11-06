@@ -11,19 +11,25 @@ const navigationContainer = document.querySelector(".navigation-container");
 const header = document.querySelector('.header');
 const secret = document.querySelector(".secret");
 const searchBar = document.querySelector("#searchbar");
+const whiteSpace = document.querySelector(".white-space");
+const h4s = document.querySelectorAll("h4")
+
+
+
+
+let itHas = true;
 
 document.querySelector("#searchbar").oninput = function(){
     let val = this.value.trim().toLowerCase()
     console.log(val)
     let articlesThems = document.querySelectorAll("article")
-    let whiteSpace = document.querySelector(".white-space")
     if(val != ""){
         articlesThems.forEach(art => {
             
             let topicName = art.children[0];
             if(topicName.innerText.toLowerCase().indexOf(val.toLowerCase()) == -1){
                 art.classList.add("hide")
-                whiteSpace.style.display = `block`
+               // whiteSpace.style.display = `block`
                 
             } 
             else {
@@ -31,6 +37,8 @@ document.querySelector("#searchbar").oninput = function(){
                 whiteSpace.style.display = `none`
                 
             }
+
+
 
         })}
         else if(val == "машина"){
@@ -44,9 +52,17 @@ document.querySelector("#searchbar").oninput = function(){
                 whiteSpace.style.display = `none`
             }
         )}
-       
+       articlesThems.forEach(art => {
+        if(!art.classList.contains("hide")){whiteSpace.style.display = `none`
+    itHas = false}
+else{itHas = true}})
+    if(itHas){
+        whiteSpace.style.display = `block`
+    }
+    
+    }
         
-}
+
 
 
 
@@ -72,6 +88,7 @@ function typeWriter(){
     }
     
     
+    
 }
 
 typeWriter()
@@ -84,7 +101,14 @@ const grayMatter = document.querySelector(".graymatter")
 
 articleBtn.addEventListener("click", () => {
     grayMatter.style.display = `block`;
-     articleCreator.style.transform = `translate3d(0, 0, 0)`;
+    articleCreator.style.display = `block`
+    setTimeout(() => {
+        articleCreator.style.transform = `translate3d(0, 0, 0)`;
+    }, 70)
+    document.body.style.overflow = 'hidden'
+    
+    
+    
      
      
 })
@@ -92,7 +116,8 @@ articleBtn.addEventListener("click", () => {
 crestBtn.addEventListener("click", () => {
     grayMatter.style.display = `none`;
     articleCreator.style.transform = `translate3d(90vw, 0, 0)`;
-    
+    document.body.style.overflow = ''
+
     clearRed()
 })
 
@@ -183,11 +208,13 @@ articleCounter++;
     topicCreated.classList.add("topic");
     topicCreated.innerText = topic;
     let article = document.createElement("article");
+    let main = document.createElement("main")
     if(!topicCreator.value == "" && !authorCreator.value == "" && !textCreator.value == "" && !dateCreator.value == 0){
     article.append(topicCreated)
     article.append(dateCreated)
     article.append(authorCreated)
-    article.append(textCreated)
+    main.append(textCreated)
+    article.append(main)
 
  localStorage.setItem("allArticles", JSON.stringify(allTheArticles))
 
@@ -195,8 +222,11 @@ articleCounter++;
     mainBody.prepend(article)
     grayMatter.style.display = `none`;
     articleCreator.style.transform = `translate3d(90vw, 0, 0)`;
+    document.body.style.overflow = ''
     connectLeftToRightTopic()
-    clearArticleCreator();
+    clearArticleCreator()
+    mouseOver()
+    
     
 } else {
         checkCreators()
@@ -257,6 +287,98 @@ function connectLeftToRightTopic(){
         })
         listBox.appendChild(leftTopic);
 })}}
+
+
+function mouseOver(){
+    const articles = document.querySelectorAll("article")
+    articles.forEach(article => {
+        article.addEventListener("mouseenter", () => {
+            let texts = Array.from(article.querySelectorAll(".text"))
+            if(texts.length === 0){return} else {
+            let penElement = document.createElement("div")
+            article.appendChild(penElement)
+            penElement.classList.add("pen")
+            
+            
+            penElement.addEventListener("click", () => {
+                penElement.remove()
+                let textElements = Array.from(article.querySelectorAll(".text"))
+                textElements.reverse().forEach(textElement => {
+                    let submitElement = document.createElement("div")
+                    article.appendChild(submitElement)
+                    submitElement.classList.add("submitEl")
+
+                    let main = article.querySelector("main")
+                    let height = getComputedStyle(textElement).height
+                    let textValue = textElement.innerText
+                    let textArea = document.createElement("textarea")
+                    textArea.classList.add("areaEd")
+                    textArea.value = textValue
+                    textElement.remove()
+                    if(textElement.nextSibling !== "img"){
+                    main.prepend(textArea)
+                    textArea.style.height = height
+                    } else {
+                    main.prepend(textArea)
+                    textArea.style.height = height
+                }
+
+                submitElement.addEventListener("click", () => {
+                    let areaHeight = getComputedStyle(textArea).height
+                    let textEl = document.createElement("div")
+                    textEl.classList.add("text")
+                    textEl.innerText = textArea.value
+                    main.appendChild(textEl)
+                    textArea.remove()
+                    textEl.style.height = areaHeight
+                    submitElement.remove()
+                })
+
+                textArea.addEventListener("input", () => {
+                    offsetTextArea(textArea)
+                })
+              
+                textArea.addEventListener("focusin", () => {
+                    textArea.style.border = `1px solid lightblue`
+
+                    textArea.addEventListener("focusout", () => {
+                        textArea.style.border = `0.01px solid transperent`
+                    })
+                })               
+                
+               
+                
+
+                })
+                   
+            })
+        
+
+        article.addEventListener("mouseleave", () => {
+            penElement.remove()
+        })
+
+    }
+    })
+
+    })
+    
+
+    
+}
+
+function offsetTextArea(textarea){
+    if(textarea.scrollHeight >= textarea.offsetHeight){
+        textarea.style.height = textarea.scrollHeight + "px"
+    } else if(textarea.scrollHeight <= textarea.offsetHeight){
+        textarea.style.height = textarea.scrollHeight + "px"
+    } else if(textarea.offsetHeight == 18 && textarea.offsetWidth == 0){
+        
+        textarea.remove()
+    }
+    console.log(`scrollHeight${textarea.clientHeight} offsetHeight: ${textarea.offsetHeight}`)
+}
+
 
 
 const musicContainer = document.querySelector(".music-container")
@@ -357,6 +479,8 @@ audio.addEventListener("ended", nextSong)
 window.addEventListener("DOMContentLoaded", () => {
     let allArticles = localStorage.getItem("allArticles")
     let allArticlesNew = JSON.parse(allArticles);
+    if(allArticlesNew == null){ mouseOver()
+        connectLeftToRightTopic()} else {
     let articlesArray = Array.from(allArticlesNew);
     articlesArray.forEach(article => {
         let articleContainer = document.createElement("article");
@@ -364,6 +488,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let date = document.createElement("p")
         let author = document.createElement("p")
         let text = document.createElement("div")
+        let main = document.createElement("main")
         topic.innerText = article.topic;
         date.innerText = article.date;
         author.innerText = article.author;
@@ -375,8 +500,47 @@ window.addEventListener("DOMContentLoaded", () => {
         articleContainer.appendChild(topic);
         articleContainer.appendChild(date);
         articleContainer.appendChild(author);
-        articleContainer.appendChild(text);
+        main.appendChild(text);
+        articleContainer.appendChild(main)
         mainBody.prepend(articleContainer)
     }) 
+
+    connectLeftToRightTopic()
+    mouseOver()}
+    
+
+    ///YYYYYYYYYYYYYYYYYYYYYYYYYY
 })
 
+
+// Координаты
+
+const ball = document.querySelector(".ball")
+const field = document.querySelector(".field")
+
+
+
+field.addEventListener("click", e => {
+  let fieldCoords = field.getBoundingClientRect();
+
+  let xPosition = e.clientX - fieldCoords.left - ball.offsetWidth / 2;
+  let yPosition = e.clientY - fieldCoords.top - ball.offsetHeight / 2;
+
+  if(xPosition <= 0) {
+    xPosition = 0;
+  }
+  if(yPosition <= 0){
+    yPosition = 0;
+  }
+  if(xPosition + ball.clientWidth > field.clientWidth){
+    xPosition = field.clientWidth - ball.clientWidth;
+  }
+  if(yPosition + ball.clientHeight > field.clientHeight){
+    yPosition = field.clientHeight - ball.clientHeight
+  }
+
+  ball.style.top = `${yPosition}px`;
+  ball.style.left = `${xPosition}px`;
+
+  console.log(xPosition, yPosition, fieldCoords)
+})
